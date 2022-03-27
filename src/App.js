@@ -10,6 +10,7 @@ function App() {
 	// State that represents whether the user has won the game yet
 	const [tenzies, setTenzies] = useState(false)
 	const [rolls, setRolls] = useState(0)
+	const [bestRolls, setBestRolls] = useState(localStorage.getItem("best") || 0)
 
 	useEffect(() => {
 		
@@ -17,8 +18,15 @@ function App() {
 		const firstValue = dice[0].value
 		const allSameValue = dice.every(die => die.value === firstValue)
 
-		if (allHeld && allSameValue)
+		// if the user won, set tenzies to true
+		if (allHeld && allSameValue) {
 			setTenzies(true)
+			// Check if current score beat the best score
+			if (rolls < bestRolls || bestRolls === 0) {
+				setBestRolls(rolls)
+				localStorage.setItem("best", rolls)
+			}
+		}
 
 	}, [dice])
 
@@ -82,6 +90,10 @@ function App() {
 			
 			<div className="rolls">
 				Number of Rolls: {rolls}
+			</div>
+
+			<div className="best-rolls">
+				Best: {bestRolls}
 			</div>
 
 			<button 
