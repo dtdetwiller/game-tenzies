@@ -9,7 +9,9 @@ function App() {
 	const [dice, setDice] = useState(allNewDice())
 	// State that represents whether the user has won the game yet
 	const [tenzies, setTenzies] = useState(false)
+	// number of rolls for the current game
 	const [rolls, setRolls] = useState(0)
+	// number of rolls for the overall best game
 	const [bestRolls, setBestRolls] = useState(localStorage.getItem("best") || 0)
 
 	// Sets local storage
