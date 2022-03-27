@@ -12,6 +12,7 @@ function App() {
 	const [rolls, setRolls] = useState(0)
 	const [bestRolls, setBestRolls] = useState(localStorage.getItem("best") || 0)
 
+	// Sets local storage
 	useEffect(() => {
 		
 		const allHeld = dice.every(die => die.isHeld)
